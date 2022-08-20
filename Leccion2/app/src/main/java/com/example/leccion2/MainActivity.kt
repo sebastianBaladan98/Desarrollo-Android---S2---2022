@@ -26,49 +26,53 @@ class MainActivity : AppCompatActivity() {
             Persona("Tamara", "Nin", edad = null,profesion = "Escritora", pais = "Brasil")
         )
 
-        val manuel = personas.get(0)
-        val gimena = personas.get(1)
-        val norberto = personas.get(5)
+        val manuel = personas[0]
+        val gimena = personas[1]
+        val norberto = personas[5]
 
         /*---------------------------Parte A---------------------------*/
-        Log.v( TAG, "\n Parte A / Prueba de la función esMayor()" )
+        Log.v( TAG, "\nParte A / Prueba de la función esMayor()" )
         Log.v( TAG, esMayor(manuel).toString() ) //true
-        Log.v( TAG, esMayor(gimena).toString() ) //true
+        Log.v( TAG, esMayor(gimena).toString() ) //false
         Log.v( TAG, "---------------------------------\n" )
         /*-------------------------------------------------------------*/
 
         /*---------------------------Parte B---------------------------*/
-        Log.v( TAG, "\n Parte B / Prueba de la función startsWithR()" )
+        Log.v( TAG, "\nParte B / Prueba de la función startsWithR()" )
         Log.v( TAG, startsWithR(manuel).toString() ) //false
         Log.v( TAG, startsWithR(gimena).toString() ) //true
         Log.v( TAG, "---------------------------------\n" )
         /*-------------------------------------------------------------*/
 
         /*---------------------------Parte C---------------------------*/
-        Log.v( TAG, "\n Parte C / Prueba de la función tieneProfesion()" )
+        Log.v( TAG, "\nParte C / Prueba de la función tieneProfesion()" )
         Log.v( TAG, manuel.tieneProfesion().toString() ) //true
         Log.v( TAG, norberto.tieneProfesion().toString() ) //false
         Log.v( TAG, "---------------------------------\n" )
         /*-------------------------------------------------------------*/
 
         /*---------------------------Parte D---------------------------*/
-        Log.v( TAG, "\n Parte D / Imprimiendo nombres y apellidos de las personas que son mayores, su nombre comience con R y tengan profesión" )
+        Log.v( TAG, "\nParte D / Imprimiendo nombres y apellidos de las personas que son mayores, su nombre comience con R y tengan profesión" )
         Log.v( TAG, mayorConR_YProfesion(personas).toString() )
         Log.v( TAG, "---------------------------------\n" )
         /*-------------------------------------------------------------*/
 
+        /*---------------------------Parte E---------------------------*/
+        Log.v( TAG, "\nParte E / Prueba de la función areAllConditionsMet()" )
+        val bettina = personas[2]
+        Log.v( TAG, areAllConditionsMet( manuel, ::esMayor, startsWithR, Persona::tieneProfesion ).toString() ) //false
+        Log.v( TAG, areAllConditionsMet( bettina, ::esMayor, startsWithR, Persona::tieneProfesion ).toString() ) //true
+        Log.v( TAG, "---------------------------------\n" )
+        /*-------------------------------------------------------------*/
 
-
-
-        Log.v("TAG", "Personas mayores de edad con profesión" + mayorConR_YProfesion(personas).toString())
-
-        val personaPrueba = personas.get(0);
-        Log.v("TAG", String.format("¿%s %s es mayor?: %b", personaPrueba.nombre,
-            personaPrueba.apellido,
-            esMayor(personaPrueba)))
-
-        val bettina = personas.get(2)
-        Log.v("TAG", "¿Betinna cumple las 3 condiciones?: " + areAllConditionsMet(bettina, ::esMayor, startsWithR, Persona::tieneProfesion))
+        /*---------------------------Parte F---------------------------*/
+        Log.v( TAG, "\nParte F / Igual a la parte D, pero haciendo uso del método areAllConditionsMet()" )
+        var personasMayoresConR_YProf: List<Persona> = personas.filter {
+                persona -> areAllConditionsMet( persona, ::esMayor, startsWithR, Persona::tieneProfesion )
+        }
+        Log.v( TAG, personasMayoresConR_YProf.toString() )
+        Log.v( TAG, "---------------------------------\n" )
+        /*-------------------------------------------------------------*/
     }
 
     //d
@@ -77,8 +81,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     //e
-    private fun areAllConditionsMet( p: Persona, fun1: (Persona) -> Boolean, fun2: (Persona) -> Boolean, fun3: () -> Boolean): Boolean{
-        return fun1(p) and fun2(p) and p.tieneProfesion();
+    private fun areAllConditionsMet( p: Persona, fun1: (Persona) -> Boolean, fun2: (Persona) -> Boolean, fun3: (Persona) -> Boolean): Boolean{
+        return fun1(p) and fun2(p) and fun3(p);
     }
 
     //b
@@ -95,11 +99,12 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-class Persona(val nombre: String?,
-              val apellido: String?,
-              val edad: Int?,
-              val profesion: String?,
-              val pais: String?){
+class Persona(
+    private val nombre: String?,
+    val apellido: String?,
+    val edad: Int?,
+    val profesion: String?,
+    val pais: String?){
     override fun toString(): String {
         return "$nombre $apellido"
     }
