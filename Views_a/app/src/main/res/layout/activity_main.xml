@@ -12,9 +12,11 @@
         android:layout_height="729dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="25dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,14 +47,14 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Email Input">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:hint="Email Input" />
+                    android:layout_marginBottom="20dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,13 +66,18 @@
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="707dp">
 
-                <EditText
-                    android:id="@+id/editTextTextPassword3"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:ems="10"
-                    android:hint="Password Input"
-                    android:inputType="textPassword" />
+                    android:hint="Password Input">
+
+                    <EditText
+                        android:id="@+id/editTextTextPassword3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/forgotPw"
