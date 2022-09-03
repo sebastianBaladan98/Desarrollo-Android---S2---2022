@@ -6,10 +6,14 @@ import com.example.vistasestilosynavegacin_leccin1.databinding.ActivityMainBindi
 
 class MainActivity : AppCompatActivity() {
 
-    private var binding: ActivityMainBinding? = null
+    private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityMainBinding.inflate( layoutInflater )
+        setContentView( binding.root )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        binding.loginButton.setOnClickListener {  }
     }
 }
