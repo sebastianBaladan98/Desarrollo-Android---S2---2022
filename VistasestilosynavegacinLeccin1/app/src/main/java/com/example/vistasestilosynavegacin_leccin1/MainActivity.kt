@@ -1,5 +1,6 @@
 package com.example.vistasestilosynavegacin_leccin1
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,9 +28,10 @@ class MainActivity : AppCompatActivity() {
         val email: String = binding.emailInput.text.toString()
         val password: String = binding.passwordInput.text.toString()
 
-        if ( email.contains("@test.com") and password.equals("Password123")) {
-            //Navegar a otra activity
-            Log.v( "TAG", "Credenciales correctas" )
+        if ( email.contains( Regex("^[A-Za-z0-9._%+-]+@test\\.com\$") ) and (password == "Password123")) {
+            val intent: Intent = Intent( this, CityCleanActivity::class.java )
+            intent.putExtra("email", email)
+            startActivity( intent )
         } else {
             Toast.makeText( this, "Credenciales incorrectas", Toast.LENGTH_SHORT ).show()
         }
