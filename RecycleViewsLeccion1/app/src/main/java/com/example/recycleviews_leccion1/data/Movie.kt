@@ -1,4 +1,4 @@
-package com.example.recycleviews_leccion1
+package com.example.recycleviews_leccion1.data
 
 import androidx.annotation.DrawableRes
 
