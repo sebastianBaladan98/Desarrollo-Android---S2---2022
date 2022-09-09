@@ -7,11 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recycleviews_leccion1.adapters.MovieAdapter
 import com.example.recycleviews_leccion1.data.Movie
+import com.example.recycleviews_leccion1.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
     val movies: List<Movie> = listOf(
+        Movie("X-Men Apocalypse", 144, Movie.ACCION, R.drawable.x_men_apocalypse, "X-Men" ),
+        Movie("X-Men Apocalypse", 144, Movie.ACCION, R.drawable.x_men_apocalypse, "X-Men" ),
+        Movie("X-Men Apocalypse", 144, Movie.ACCION, R.drawable.x_men_apocalypse, "X-Men" ),
+        Movie("X-Men Apocalypse", 144, Movie.ACCION, R.drawable.x_men_apocalypse, "X-Men" ),
         Movie("X-Men Apocalypse", 144, Movie.ACCION, R.drawable.x_men_apocalypse, "X-Men" ),
 
         Movie("El Camino", 122, Movie.ACCION, R.drawable.el_camino, "Breaking Bad" ),
@@ -72,13 +77,15 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
 
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate( layoutInflater )
+        setContentView( binding.root )
 
-        recyclerView.findViewById<RecyclerView>(R.id.recyclerView)
 
-        recyclerView.layoutManager = LinearLayoutManager( this )
-        recyclerView.adapter = MovieAdapter( movies )
+        binding.recyclerView.layoutManager = LinearLayoutManager( this )
+        binding.recyclerView.adapter = MovieAdapter( movies.shuffled() )
     }
 }
