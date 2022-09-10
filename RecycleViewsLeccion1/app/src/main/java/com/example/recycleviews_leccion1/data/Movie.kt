@@ -1,12 +1,13 @@
 package com.example.recycleviews_leccion1.data
 
 import androidx.annotation.DrawableRes
+import java.io.Serializable
 
 data class Movie(val nombre: String,
                  val duracion: Int,
                  val genero: String,
                  @DrawableRes val caratula: Int,
-                 val sinopsis: String ) {
+                 val sinopsis: String ): Serializable {
 
     companion object {
         val ACCION: String = "Acción"
