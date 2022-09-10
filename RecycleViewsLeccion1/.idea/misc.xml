@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sebas/Documents/Git/Projects/Desarrollo-Android---S2---2022/RecycleViewsLeccion1/app/src/main/res/layout/activity_grid.xml" value="0.32472826086956524" />
+        <entry key="..\:/Users/sebas/Documents/Git/Projects/Desarrollo-Android---S2---2022/RecycleViewsLeccion1/app/src/main/res/layout/activity_horizontal_scroll.xml" value="0.32472826086956524" />
+        <entry key="..\:/Users/sebas/Documents/Git/Projects/Desarrollo-Android---S2---2022/RecycleViewsLeccion1/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/sebas/Documents/Git/Projects/Desarrollo-Android---S2---2022/RecycleViewsLeccion1/app/src/main/res/layout/activity_movie_details.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/sebas/Documents/Git/Projects/Desarrollo-Android---S2---2022/RecycleViewsLeccion1/app/src/main/res/layout/activity_vertical_scroll.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/sebas/Documents/Git/Projects/Desarrollo-Android---S2---2022/RecycleViewsLeccion1/app/src/main/res/layout/movie_view_design.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/concussion_drawable.xml" value="0.2845" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2845" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />

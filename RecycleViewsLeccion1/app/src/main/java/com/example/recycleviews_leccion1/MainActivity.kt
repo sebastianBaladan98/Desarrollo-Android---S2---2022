@@ -1,18 +1,17 @@
 package com.example.recycleviews_leccion1
 
-import android.graphics.drawable.Drawable
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recycleviews_leccion1.adapters.MovieAdapter
 import com.example.recycleviews_leccion1.data.Movie
 import com.example.recycleviews_leccion1.databinding.ActivityMainBinding
+import java.io.Serializable
 
 
 class MainActivity : AppCompatActivity() {
 
-    val movies: List<Movie> = listOf(
+    var movies: ArrayList<Movie> = arrayListOf(
         Movie("X-Men Apocalypse", 144, Movie.ACCION, R.drawable.x_men_apocalypse, "X-Men" ),
         Movie("X-Men Apocalypse", 144, Movie.ACCION, R.drawable.x_men_apocalypse, "X-Men" ),
         Movie("X-Men Apocalypse", 144, Movie.ACCION, R.drawable.x_men_apocalypse, "X-Men" ),
@@ -49,11 +48,11 @@ class MainActivity : AppCompatActivity() {
         Movie("Hulk", 138, Movie.SUPERHEROES, R.drawable.hulk, "A movie about the Marvel superhero, The Hulk" ),
         Movie("Hulk", 138, Movie.SUPERHEROES, R.drawable.hulk, "A movie about the Marvel superhero, The Hulk" ),
 
-        Movie("The Ecualizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Ecualizer" ),
-        Movie("The Ecualizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Ecualizer" ),
-        Movie("The Ecualizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Ecualizer" ),
-        Movie("The Ecualizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Ecualizer" ),
-        Movie("The Ecualizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Ecualizer" ),
+        Movie("The Equalizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Equalizer" ),
+        Movie("The Equalizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Equalizer" ),
+        Movie("The Equalizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Equalizer" ),
+        Movie("The Equalizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Equalizer" ),
+        Movie("The Equalizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Equalizer" ),
 
         Movie("Nobody", 32, Movie.ACCION, R.drawable.nobody, "Nobody" ),
         Movie("Nobody", 32, Movie.ACCION, R.drawable.nobody, "Nobody" ),
@@ -84,8 +83,28 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate( layoutInflater )
         setContentView( binding.root )
 
+        movies = this.movies.shuffled() as ArrayList<Movie>
 
-        binding.recyclerView.layoutManager = LinearLayoutManager( this )
-        binding.recyclerView.adapter = MovieAdapter( movies.shuffled() )
+        binding.verticalButton.setOnClickListener {
+            val intent: Intent = Intent( this, VerticalScrollActivity::class.java )
+
+            intent.putExtra( "movies" , movies as Serializable )
+            this.startActivity( intent )
+        }
+
+        binding.horizontalButton.setOnClickListener {
+            val intent: Intent = Intent( this, HorizontalScrollActivity::class.java )
+
+            intent.putExtra( "movies" , movies as Serializable )
+            this.startActivity( intent )
+        }
+
+        binding.gridButton.setOnClickListener {
+            val intent: Intent = Intent( this, GridActivity::class.java )
+
+            intent.putExtra( "movies" , movies as Serializable )
+            this.startActivity( intent )
+        }
+
     }
 }
