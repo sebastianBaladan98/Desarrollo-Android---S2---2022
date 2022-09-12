@@ -20,8 +20,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         binding.titulo.text = movie.nombre
         binding.genero.text = movie.genero
         binding.sinopsis.text = movie.sinopsis
-        binding.duracion.text = movie.nombre
+        binding.duracion.text = "${ movie.duracion } Min."
         binding.caratula.setImageDrawable( getDrawable( movie.caratula ) )
-
     }
 }

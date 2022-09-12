@@ -2,18 +2,15 @@ package com.example.recycleviews_leccion1.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recycleviews_leccion1.MovieDetailsActivity
 import com.example.recycleviews_leccion1.data.Movie
 import com.example.recycleviews_leccion1.R
-import java.io.Serializable
 
 class MovieAdapter( val context: Context,
                     private val movieList: List<Movie>,
@@ -27,21 +24,6 @@ class MovieAdapter( val context: Context,
         val title: TextView = movieView.findViewById(R.id.movieTitle)
         val description: TextView = movieView.findViewById(R.id.description)
 
-        init {
-            imageView.isVisible = showCaratula
-            title.isVisible = showTitulo
-            description.isVisible = showSinopsis
-
-            imageView.setOnClickListener {
-                val intent: Intent = Intent( context , MovieDetailsActivity::class.java)
-
-                TODO("Error al castear de View a Serializable")
-                intent.putExtra( "movie", movieView as Serializable )
-
-                context.startActivity( intent )
-            }
-        }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -52,11 +34,18 @@ class MovieAdapter( val context: Context,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ItemsViewModel = movieList[position]
+        val movie = movieList[position]
 
-        holder.imageView.setImageResource(ItemsViewModel.caratula)
-        holder.title.text = ItemsViewModel.nombre
-        holder.description.text = ItemsViewModel.sinopsis
+        holder.imageView.setImageResource(movie.caratula)
+        holder.title.text = movie.nombre
+        holder.description.text = movie.sinopsis
+
+        holder.itemView.setOnClickListener {
+            val intent: Intent = Intent( holder.itemView.context, MovieDetailsActivity::class.java )
+            intent.putExtra("movie", movie)
+            context.startActivity( intent )
+        }
+
     }
 
     override fun getItemCount(): Int {

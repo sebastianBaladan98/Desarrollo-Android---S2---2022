@@ -27,7 +27,7 @@
         android:layout_marginStart="16dp"
         android:text="TextView"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/caratula"
         app:layout_constraintTop_toTopOf="@+id/caratula" />
 
@@ -39,7 +39,7 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/caratula"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
@@ -51,7 +51,7 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/caratula"
         app:layout_constraintTop_toBottomOf="@+id/sinopsis" />
 
@@ -63,7 +63,8 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/caratula"
         app:layout_constraintTop_toBottomOf="@+id/genero" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

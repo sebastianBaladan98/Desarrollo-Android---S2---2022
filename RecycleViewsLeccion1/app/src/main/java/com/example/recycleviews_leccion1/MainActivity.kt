@@ -1,11 +1,19 @@
 package com.example.recycleviews_leccion1
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import coil.ImageLoader
+import coil.imageLoader
+import coil.request.ImageRequest
+import coil.request.SuccessResult
 import com.example.recycleviews_leccion1.data.Movie
 import com.example.recycleviews_leccion1.databinding.ActivityMainBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.Serializable
 
 
@@ -54,11 +62,11 @@ class MainActivity : AppCompatActivity() {
         Movie("The Equalizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Equalizer" ),
         Movie("The Equalizer", 121, Movie.ACCION, R.drawable.the_equalizer, "Movie The Equalizer" ),
 
-        Movie("Nobody", 32, Movie.ACCION, R.drawable.nobody, "Nobody" ),
-        Movie("Nobody", 32, Movie.ACCION, R.drawable.nobody, "Nobody" ),
-        Movie("Nobody", 32, Movie.ACCION, R.drawable.nobody, "Nobody" ),
-        Movie("Nobody", 32, Movie.ACCION, R.drawable.nobody, "Nobody" ),
-        Movie("Nobody", 32, Movie.ACCION, R.drawable.nobody, "Nobody" ),
+        Movie("Nobody", 132, Movie.ACCION, R.drawable.nobody, "Nobody" ),
+        Movie("Nobody", 132, Movie.ACCION, R.drawable.nobody, "Nobody" ),
+        Movie("Nobody", 132, Movie.ACCION, R.drawable.nobody, "Nobody" ),
+        Movie("Nobody", 132, Movie.ACCION, R.drawable.nobody, "Nobody" ),
+        Movie("Nobody", 132, Movie.ACCION, R.drawable.nobody, "Nobody" ),
 
         Movie("Venom", 97, Movie.SUPERHEROES, R.drawable.venom, "Venom" ),
         Movie("Venom", 97, Movie.SUPERHEROES, R.drawable.venom, "Venom" ),
@@ -74,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
     )
 
-    lateinit var recyclerView: RecyclerView
 
     lateinit var binding: ActivityMainBinding
 
@@ -83,28 +90,46 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate( layoutInflater )
         setContentView( binding.root )
 
+        GlobalScope.launch {
+            val drawable = getImage("https://m.media-amazon.com/images/I/91FEskGdiAL._SL1500_.jpg")
+            Movie("The Amazing Spiderman", 136, Movie.SUPERHEROES, 1, "The Amazing Spiderman figth the Lizard" )
+        }
+
         movies = this.movies.shuffled() as ArrayList<Movie>
 
+        /* Botones */
         binding.verticalButton.setOnClickListener {
             val intent: Intent = Intent( this, VerticalScrollActivity::class.java )
 
-            intent.putExtra( "movies" , movies as Serializable )
+            intent.putExtra( "movies" , movies )
             this.startActivity( intent )
         }
 
         binding.horizontalButton.setOnClickListener {
             val intent: Intent = Intent( this, HorizontalScrollActivity::class.java )
 
-            intent.putExtra( "movies" , movies as Serializable )
+            intent.putExtra( "movies" , movies )
             this.startActivity( intent )
         }
 
         binding.gridButton.setOnClickListener {
             val intent: Intent = Intent( this, GridActivity::class.java )
 
-            intent.putExtra( "movies" , movies as Serializable )
+            intent.putExtra( "movies" , movies )
             this.startActivity( intent )
         }
 
+
+
+
+    }
+
+    suspend fun getImage(url: String ): Drawable {
+        val request =  ImageRequest.Builder( this )
+            .data(url)
+            .build()
+
+        val result = imageLoader.execute( request )
+        return result.drawable!!
     }
 }
