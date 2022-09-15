@@ -1,11 +1,14 @@
 package com.example.fragments_leccion1.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fragments_leccion1.R
+import com.example.fragments_leccion1.databinding.FragmentFirstQuestionBinding
+import java.lang.ClassCastException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +25,22 @@ class FirstQuestionFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentFirstQuestionBinding
+
+    private var listener: FirstQuestionFragmentListener? = null
+
+    interface FirstQuestionFragmentListener {
+        fun deployLastQuestionFragment()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as? FirstQuestionFragmentListener
+        if (listener == null ) {
+            throw ClassCastException("$context must implement FirstQuestionFragmentListener")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,9 +52,17 @@ class FirstQuestionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first_question, container, false)
+        binding = FragmentFirstQuestionBinding.inflate( inflater, container, false )
+
+        binding.button.setOnClickListener {
+            listener?.deployLastQuestionFragment()
+            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit();
+        }
+
+        return binding.root
     }
 
     companion object {

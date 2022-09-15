@@ -1,11 +1,14 @@
 package com.example.fragments_leccion1.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fragments_leccion1.R
+import com.example.fragments_leccion1.databinding.FragmentSecondQuestionBinding
+import java.lang.ClassCastException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +25,8 @@ class SecondQuestionFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentSecondQuestionBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,9 +38,16 @@ class SecondQuestionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
+        binding = FragmentSecondQuestionBinding.inflate( inflater, container, false )
+
+        binding.finishButton.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit();
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second_question, container, false)
+        return binding.root
     }
 
     companion object {

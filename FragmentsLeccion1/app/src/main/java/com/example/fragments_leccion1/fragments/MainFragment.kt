@@ -1,11 +1,13 @@
 package com.example.fragments_leccion1.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.fragments_leccion1.R
+import com.example.fragments_leccion1.databinding.FragmentMainBinding
+import java.lang.ClassCastException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +24,23 @@ class MainFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentMainBinding
+
+    private var listener: MainFragmentListener? = null
+
+    interface MainFragmentListener {
+        fun deployHelpFragment()
+        fun deployFirstQuestionFragment()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as? MainFragmentListener
+        if (listener == null ) {
+            throw ClassCastException("$context must implement MainFragmentListener")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,9 +52,19 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        binding = FragmentMainBinding.inflate( inflater, container, false )
+
+        binding.helpButton.setOnClickListener {
+            listener?.deployHelpFragment()
+        }
+
+        binding.startButton.setOnClickListener {
+            listener?.deployFirstQuestionFragment()
+        }
+
+        return binding.root
     }
 
     companion object {
