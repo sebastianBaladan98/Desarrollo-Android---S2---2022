@@ -4,9 +4,13 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.Observer
 import com.example.arquitecturaretrofit.databinding.ActivityMainBinding
+import com.example.arquitecturaretrofit.models.CharacterResponse
 import com.example.arquitecturaretrofit.services.MarvelClient
+import com.example.arquitecturaretrofit.viewModel.MainActivityViewModel
 import java.security.MessageDigest
 import java.time.Instant
 import java.time.format.DateTimeFormatter
@@ -25,17 +29,9 @@ class MainActivity : AppCompatActivity() {
 
         setContentView( binding.root )
 
-        thread {
-            val ts = DateTimeFormatter.ISO_INSTANT.format(Instant.now())
-            val hash = (ts.toString()+privKey+pubKey).md5().toHex()
-            val characters = MarvelClient.service.listCharacters(pubKey, ts, hash)
-
-            val response = characters.execute().body()
-
-            if (response != null) {
-                Log.v("TAG", "Response = $response")
-            }
-            finish()
+        val model: MainActivityViewModel by viewModels()
+        model.getCharacters().observe(this) { chars ->
+            Log.v("TAG", chars.data.count.toString())
         }
     }
 }

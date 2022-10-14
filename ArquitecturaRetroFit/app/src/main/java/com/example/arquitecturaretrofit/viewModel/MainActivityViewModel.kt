@@ -32,14 +32,13 @@ class MainActivityViewModel: ViewModel() {
         thread {
             val ts = DateTimeFormatter.ISO_INSTANT.format(Instant.now())
             val hash = (ts.toString()+MarvelClient.privKey+MarvelClient.pubKey).md5().toHex()
-            var characters = MarvelClient.service.listCharacters(MarvelClient.pubKey, ts, hash)
+            val characters = MarvelClient.service.listCharacters(MarvelClient.pubKey, ts, hash)
 
             val response = characters.execute().body()
 
             if (response != null) {
-                this.characters.value = response
-            } else {
-
+                //https://developer.android.com/topic/libraries/architecture/viewmodel#kotlin
+                this.characters.postValue(response)
             }
         }
     }
