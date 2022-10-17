@@ -5,9 +5,9 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.arquitecturaretrofit.models.DTO.MarvelCharacterConverter
 import com.example.arquitecturaretrofit.models.DTO.MarvelCharacterDTO
 import com.example.arquitecturaretrofit.models.Result
+import com.example.arquitecturaretrofit.models.converter.MarvelCharacterConverter
 import com.example.arquitecturaretrofit.services.MarvelClient
 import com.example.arquitecturaretrofit.services.MarvelClient.md5
 import com.example.arquitecturaretrofit.services.MarvelClient.toHex
@@ -36,7 +36,7 @@ class MainActivityViewModel : ViewModel() {
             val hash = (ts.toString() + MarvelClient.privKey + MarvelClient.pubKey).md5().toHex()
             val characters = MarvelClient.service.listCharacters(MarvelClient.pubKey, ts, hash)
             //
-            
+
             val response = characters.execute().body()
 
             if (response != null) {
