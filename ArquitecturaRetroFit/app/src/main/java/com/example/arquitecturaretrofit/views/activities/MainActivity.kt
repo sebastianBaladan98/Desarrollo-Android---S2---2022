@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val model: MainActivityViewModel by viewModels()
         model.getCharacters().observe(this) { chars ->
+            /*No funciona, no se puede ver el recyclerView*/
+//            Blurry.with(this).radius(25).sampling(3).animate().onto(binding.container)
             loadCharacters(this, chars);
         }
     }

@@ -29,7 +29,7 @@
             android:background="#ACACAC">
 
             <ImageView
-                android:id="@+id/iamge"
+                android:id="@+id/image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -64,7 +64,7 @@
                 android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iamge" />
+                app:layout_constraintTop_toBottomOf="@+id/image" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
