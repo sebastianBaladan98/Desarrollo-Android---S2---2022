@@ -1,12 +1,11 @@
-package com.example.ejerciciodi
+package com.example.ejerciciodi.views.main.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ejerciciodi.databinding.ActivityMainBinding
 import com.example.ejerciciodi.di.viewModel.MainViewModel
-import com.example.ejerciciodi.services.ApiClient
 
-class MainActivity( viewModel: MainViewModel ) : AppCompatActivity() {
+class MainActivity(viewModel: MainViewModel) : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
