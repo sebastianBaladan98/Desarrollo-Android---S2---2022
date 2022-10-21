@@ -1,16 +1,20 @@
 package com.example.ejerciciodi.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ejerciciodi.R
+import com.example.ejerciciodi.di.MonsterBottomSheet
 import com.example.ejerciciodi.model.Monsters
 
-class MonstersAdapter(private val context: Context, private val monsters: Monsters) :
+class MonstersAdapter(
+    private val fragmentManager: FragmentManager,
+    private val monsters: Monsters
+) :
     RecyclerView.Adapter<MonstersAdapter.ViewHolder>() {
 
     inner class ViewHolder(monstersView: View) : RecyclerView.ViewHolder(monstersView) {
@@ -35,7 +39,7 @@ class MonstersAdapter(private val context: Context, private val monsters: Monste
         holder.monsterSpecies.text = item.species
         holder.monsterType.text = item.type
         holder.container.setOnClickListener {
-            //abrir bottom sheet
+            MonsterBottomSheet(item).show(fragmentManager, MonsterBottomSheet.TAG)
         }
     }
 
