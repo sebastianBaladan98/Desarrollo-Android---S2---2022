@@ -1,12 +1,12 @@
 package com.example.ejerciciodi.di.repositories
 
+import com.example.ejerciciodi.di.apiModule.ApiClient
 import com.example.ejerciciodi.model.Monsters
-import com.example.ejerciciodi.services.ApiClient
 
-class MonsterRepository {
+class MonsterRepository(private val apiClient: ApiClient) {
 
     suspend fun getMonsters(): Monsters {
-        val monsters = ApiClient.monsterService.getMonsters()
+        val monsters = apiClient.monsterService.getMonsters()
         if (monsters.isSuccessful) {
             return monsters.body()!!
         }

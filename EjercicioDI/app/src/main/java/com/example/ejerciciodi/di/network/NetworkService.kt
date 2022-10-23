@@ -1,5 +1,6 @@
 package com.example.ejerciciodi.services
 
+import com.example.ejerciciodi.di.apiModule.ApiClient
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

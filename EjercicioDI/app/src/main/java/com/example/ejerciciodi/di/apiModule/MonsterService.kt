@@ -1,4 +1,4 @@
-package com.example.ejerciciodi.services
+package com.example.ejerciciodi.di.apiModule
 
 import com.example.ejerciciodi.model.Monsters
 import retrofit2.Response

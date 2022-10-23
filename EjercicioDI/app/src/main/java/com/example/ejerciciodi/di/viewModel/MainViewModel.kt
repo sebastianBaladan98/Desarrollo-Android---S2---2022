@@ -6,14 +6,18 @@ import androidx.lifecycle.viewModelScope
 import com.example.ejerciciodi.di.repositories.MonsterRepository
 import com.example.ejerciciodi.model.Monsters
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
-class MainViewModel(private val monsterRepository: MonsterRepository): ViewModel() {
+class MainViewModel(private val monsterRepository: MonsterRepository) : ViewModel() {
 
     private val monsters: MutableLiveData<Monsters> by lazy {
         MutableLiveData<Monsters>().also {
             loadMonsters()
         }
+    }
+
+    @JvmName("getMonsters1")
+    fun getMonsters(): MutableLiveData<Monsters> {
+        return this.monsters
     }
 
     private fun loadMonsters() {

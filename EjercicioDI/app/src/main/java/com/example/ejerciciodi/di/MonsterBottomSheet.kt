@@ -20,10 +20,11 @@ class MonsterBottomSheet(private val monster: MonstersItem) : BottomSheetDialogF
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        super.onCreateView(layoutInflater, container, savedInstanceState)
         binding = MonsterBottomSheetBinding.inflate(layoutInflater)
         assignValues(monster)
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return binding.root
     }
 
     private fun assignValues(monster: MonstersItem) {
@@ -31,6 +32,10 @@ class MonsterBottomSheet(private val monster: MonstersItem) : BottomSheetDialogF
         binding.monsterSpeciesBottomSheet.text = monster.species
         binding.monsterDescriptionBottomSheet.text = monster.description
         binding.monsterTypeBottomSheet.text = monster.type
+        binding.favIndicator.visibility = View.INVISIBLE
+        if (monster.isFavorite) {
+            binding.favIndicator.visibility = View.VISIBLE
+        }
     }
 
 }

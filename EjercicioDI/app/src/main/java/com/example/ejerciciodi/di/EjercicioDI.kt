@@ -1,6 +1,7 @@
 package com.example.ejerciciodi.di
 
 import android.app.Application
+import com.example.ejerciciodi.di.apiModule.apiModule
 import com.example.ejerciciodi.di.network.networkModule
 import com.example.ejerciciodi.di.repositories.repositoriesModule
 import com.example.ejerciciodi.di.viewModel.viewModelModule
@@ -19,7 +20,8 @@ class EjercicioDI : Application() {
                 listOf(
                     repositoriesModule,
                     viewModelModule,
-                    networkModule
+                    networkModule,
+                    apiModule
                 )
             )
         }

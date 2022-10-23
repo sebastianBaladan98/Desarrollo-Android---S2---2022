@@ -11,5 +11,6 @@ data class MonstersItem(
     val rewards: List<Reward>,
     val species: String,
     val type: String,
-    val weaknesses: List<Weaknesse>
+    val weaknesses: List<Weaknesse>,
+    var isFavorite: Boolean = false
 )
