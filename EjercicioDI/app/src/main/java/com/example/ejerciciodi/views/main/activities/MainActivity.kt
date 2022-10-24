@@ -26,7 +26,7 @@ class MainActivity() : AppCompatActivity() {
             run {
                 binding.monstersRecycleView.layoutManager =
                     LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                val adapter = MonstersAdapter(this.supportFragmentManager, monsters)
+                val adapter = MonstersAdapter(this, this.supportFragmentManager, monsters)
                 binding.monstersRecycleView.adapter = adapter
                 binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean {

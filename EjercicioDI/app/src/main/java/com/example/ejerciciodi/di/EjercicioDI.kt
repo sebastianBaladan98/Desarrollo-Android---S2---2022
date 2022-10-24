@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.ejerciciodi.di.apiModule.apiModule
 import com.example.ejerciciodi.di.network.networkModule
 import com.example.ejerciciodi.di.repositories.repositoriesModule
+import com.example.ejerciciodi.di.sharedPrefModule.sharedPrefModule
 import com.example.ejerciciodi.di.viewModel.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -21,7 +22,8 @@ class EjercicioDI : Application() {
                     repositoriesModule,
                     viewModelModule,
                     networkModule,
-                    apiModule
+                    apiModule,
+                    sharedPrefModule
                 )
             )
         }
